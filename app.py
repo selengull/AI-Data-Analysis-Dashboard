@@ -3,11 +3,6 @@ import dash
 import dash_bootstrap_components as dbc
 from dash import html, dcc
 
-# ==========================================
-# UYGULAMA BAŞLATMA & TEMA AYARI
-# ==========================================
-# İlk açılış için ciddi ve profesyonel bir koyu tema (DARKLY) seçiyoruz.
-# Tema geçişini dinamik yönetebilmek için stil sayfalarını clientside_callback ile güncelleyeceğiz.
 app = dash.Dash(
     __name__, 
     external_stylesheets=[dbc.themes.DARKLY],
@@ -15,9 +10,9 @@ app = dash.Dash(
 )
 app.title = "AI Destekli Çift Dosya Karşılaştırma Sistemi"
 
-# ==========================================
+
 # KURUMSAL ARAYÜZ (LAYOUT) TASARIMI
-# ==========================================
+
 app.layout = dbc.Container([
     # Hafıza depoları (Bellek içi dinamik veri saklama alanları)
     dcc.Store(id="uploaded-data-store-1"),  # 1. Dosya Belleği
@@ -144,12 +139,10 @@ app.layout = dbc.Container([
 
 if __name__ == "__main__":
     print("🚀 Sunucu başlatılıyor...")
-    # Döngüsel içe aktarma hatasını önlemek için callbacks modülünü tam bu noktada çağırıyoruz
     import callbacks
     
     # callbacks.py dosyasındaki kayıt fonksiyonunu çalıştırıp tetikleyicileri bağlıyoruz
     callbacks.register_callbacks(app)
     
-    # Portu kilitlenmeleri önlemek için 8070 yaptık
     print("🌍 Lütfen tarayıcınızda şu adresi açın: http://127.0.0.1:8070")
     app.run(debug=True, port=8070, dev_tools_hot_reload=False)
