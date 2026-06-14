@@ -10,16 +10,13 @@ import io
 import re
 import dash_bootstrap_components as dbc
 
-# ==========================================
-# GÜVENLİK VE APİ AYARLARI (Windows IPv4 Sabitlemesi)
-# ==========================================
-# IPv6 çakışmasını engellemek için doğrudan '127.0.0.1' IPv4 adresine sabitliyoruz.
+# GÜVENLİK VE APİ AYARLARI 
 LM_STUDIO_URL = "http://127.0.0.1:1234/v1/chat/completions"
 MODEL_NAME = "google/gemma-3n-e4b"
 
-# ==========================================
+
 # TYPO-TOLERANT (YAZIM HATASI) YARDIMCI MOTORU
-# ==========================================
+
 def levenshtein_distance(s1: str, s2: str) -> int:
     """İki kelime arasındaki harfsel değişim mesafesini hesaplar."""
     if len(s1) < len(s2):
@@ -51,9 +48,9 @@ def is_close_match(word1: str, word2: str) -> bool:
         return False
     return levenshtein_distance(w1, w2) <= max_dist
 
-# ==========================================
+
 # YAPAY ZEKA GÜVENLİ ÇAĞRI METODU
-# ==========================================
+
 def safe_ai_call(prompt: str) -> str:
     """Modelin bağlam dışına çıkmasını ve uydurma yapmasını engelleyen koruyucu katman."""
     MAX_CHARS = 12000
@@ -97,9 +94,9 @@ def is_smalltalk(q: str) -> bool:
     q = (q or "").lower().strip()
     return any(w in q for w in ["nasılsın", "selam", "merhaba", "hey", "napıyorsun", "teşekkür", "sağ ol"])
 
-# ==========================================
+
 # VERİ DOSYASI OKUMA (CSV / EXCEL)
-# ==========================================
+
 def parse_contents(contents, filename):
     try:
         _, content_string = contents.split(",")
@@ -151,9 +148,8 @@ def parse_contents(contents, filename):
         print("Dosya okuma hatası:", e)
         return None
 
-# ==========================================
 # İNTENT VE ANALİZ MOTORU (OPERASYON KARARLARI)
-# ==========================================
+
 def detect_intent(question: str) -> dict:
     q = (question or "").lower().strip()
     intent = {
@@ -286,9 +282,9 @@ def infer_columns(df: pd.DataFrame, question: str, intent: dict) -> tuple[str|No
 
     return group_col, metric_col, date_col
 
-# ==========================================
-# TEKLİ DOSYA HESAPLAMA MOTORU (DİREKT ÇÖZÜM)
-# ==========================================
+
+# TEKLİ DOSYA HESAPLAMA MOTORU 
+
 def compute_result(df: pd.DataFrame, question: str, intent: dict, group: str|None, metric: str|None, date_col: str|None):
     """Sadece tek bir dosyayı hedef alan sorularda hatasız hesaplama yapar."""
     op = intent["op"]
@@ -404,9 +400,8 @@ def compute_result(df: pd.DataFrame, question: str, intent: dict, group: str|Non
 
     return None, None, "⚠️ Soru anlaşılamadı veya matematiksel karşılık bulunamadı.", "text"
 
-# ==========================================
 # ÇİFT DOSYA KARŞILAŞTIRMA VE HESAP MOTORU
-# ==========================================
+
 def compute_comparative_result(df1: pd.DataFrame, df2: pd.DataFrame, question: str, intent: dict, group: str|None, metric: str|None, date_col: str|None):
     op = intent["op"]
     q = (question or "").lower()
@@ -473,7 +468,7 @@ def compute_comparative_result(df1: pd.DataFrame, df2: pd.DataFrame, question: s
         else:
             return None, None, "⚠️ Karşılaştırma yapmak için iki dosyada ortak kategorik sütun bulunamadı.", "text"
 
-    # KATEGORİK KARŞILAŞTIRMA (GRUPLAMA)
+    # KATEGORİK KARŞILAŞTIRMA 
     if group and group in common_cols:
         if op == "count":
             g1 = df1.groupby(group).size().reset_index(name="1. Dosya")
