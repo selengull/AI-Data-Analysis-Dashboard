@@ -1,0 +1,87 @@
+
+.upload-zone-custom {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    border-width: 2px;
+    border-style: dashed;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+/* Koyu temada yükleme alanı hover (üzerine gelme) efekti */
+.upload-zone-custom:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: #0d6efd;
+    transform: translateY(-1px);
+}
+
+/* Chat sohbet kutusunun estetik ve dinamik görünümü */
+.chat-window-custom {
+    height: 280px;
+    overflow-y: auto;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease;
+}
+
+/* Chat mesaj kutusu hover efekti */
+.chat-window-custom:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Grafik ve Raporlama kartının minimum dikey sınırları */
+.main-report-card {
+    min-height: 645px;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+/* Dinamik özet analiz kartının gölgelendirmesi ve sınır çizgileri */
+.summary-card-custom {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Metin giriş alanlarının estetik hale getirilmesi */
+.chat-input-custom {
+    border-radius: 8px !important;
+    padding: 10px 15px !important;
+    font-size: 14px !important;
+}
+
+/* Panel başlığının yazı kalınlığı ve kurumsal duruşu */
+.header-title-custom {
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* Buton ve interaktif ögelerin yazı kalınlığı */
+.font-semibold-custom {
+    font-weight: 600;
+}
+
+/* Kaydırma çubuklarının (scrollbar) ince ve modern tasarımı */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
